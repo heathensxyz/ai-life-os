@@ -48,10 +48,11 @@ import Header from '../components/Header.astro';
 					preferences, remembers past decisions, and builds on prior work.
 				</p>
 				<p>
-					This compounding effect is the core design principle. Feedback memories prevent
-					repeated mistakes. Project memories preserve context across sessions. Reference
-					memories eliminate redundant questions. The knowledge base grows but stays manageable
-					through type systems and grooming rules.
+					But compounding has a failure mode: corrections accumulate. Every "don't do X"
+					rule makes the system safer in one context and more cautious everywhere. Without
+					active grooming, a correction-based system drifts toward paralysis. A memory
+					hygiene framework fixes this: corrections graduate to broader rules when universal,
+					merge when redundant, and retire when stale. The count should trend down over time.
 				</p>
 
 				<h2>How the content pipeline works</h2>
@@ -69,11 +70,21 @@ import Header from '../components/Header.astro';
 					Over time, as the privacy layer proves reliable, the loop tightens toward full autonomy.
 				</p>
 
+				<h2>Autonomy with guardrails</h2>
+				<p>
+					A useful AI assistant acts on your behalf, not just when you tell it to. The system
+					uses a three-tier autonomy framework: act without asking for internal operations,
+					confirm before external-facing actions, and hard-stop on safety-critical prohibitions.
+					An autonomy log tracks what the assistant decided on its own each session, and
+					corrections feed back into the framework so the boundaries stay calibrated.
+				</p>
+
 				<h2>What you will find here</h2>
 				<ul>
 					<li><strong>System architecture:</strong> how memory, hooks, skills, and schedulers wire together</li>
 					<li><strong>Practical patterns:</strong> solutions to real problems in AI-assisted workflows</li>
-					<li><strong>Automation recipes:</strong> scheduled tasks, self-healing loops, health monitoring</li>
+					<li><strong>Autonomy and trust:</strong> calibrating when the assistant acts, confirms, or refuses</li>
+					<li><strong>Maintenance patterns:</strong> memory hygiene, caution accumulation, behavioral drift detection</li>
 					<li><strong>Design principles:</strong> building for executive function, low friction, and continuous improvement</li>
 					<li><strong>Honest assessments:</strong> what works, what breaks, and what the tradeoffs are</li>
 				</ul>

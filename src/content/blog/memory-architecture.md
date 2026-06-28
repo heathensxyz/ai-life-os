@@ -83,6 +83,26 @@ The index file is the chokepoint. If it grows too large, it consumes context bud
 - **Drop narrow technical details from the index.** A specific CSS bug fix doesn't need to be in the table of contents. The topic file still exists for search.
 - **Regular grooming.** A monthly pass to update stale entries, merge duplicates, and remove memories that no longer apply.
 
+## Memory hygiene
+
+A memory system that only grows will eventually drown in its own noise. The harder discipline is knowing when a memory has outgrown its home and should graduate somewhere else, or be retired entirely.
+
+The core principle: memory is for narrow, hard-won knowledge. If a rule applies universally across sessions and domains, it belongs in your instruction file (the persistent config the assistant loads every time). Memory is the wrong place for universal norms.
+
+**The placement test:** When you're about to save a feedback memory, ask: "Would adding this to the instruction file make it longer without helping most sessions?" If the answer is no, if the rule genuinely helps across the board, put it in the instruction file. Memory is for the corrections that only fire in specific contexts.
+
+Three tiers govern where rules live:
+
+1. **Instruction file** (loaded every session): Universal behavioral norms, autonomy framework, file safety rules, design principles that apply across domains. "Always verify file paths before acting" belongs here.
+
+2. **Memory** (loaded on demand): Domain-specific corrections, project-specific gotchas, technical knowledge that matters only in narrow contexts. "This API requires pagination tokens, not offsets" belongs here.
+
+3. **Skills and project files** (loaded only inside one workflow): Rules that only matter during a specific process. A deployment checklist for one service doesn't need to occupy memory at all.
+
+**Self-maintenance through graduation.** When a feedback memory gets referenced during a session and clearly applies universally, migrate it to the instruction file and retire the memory. This is the natural lifecycle: you learn something the hard way, save it as a memory, and eventually recognize it as a general rule. At that point, promoting it and removing the memory entry reduces index noise without losing the knowledge.
+
+Memory count should trend down over time as the system matures, not up. A mature system has fewer, sharper memories because the universal lessons have graduated to the instruction file and the stale project-specific ones have been retired.
+
 ## Cross-referencing
 
 Topic files can link to each other using a simple convention (wiki-style links or just naming the slug). This creates a lightweight knowledge graph: a feedback memory about deployment can reference a project memory about infrastructure, and a reference memory about API access can link to the project that uses it.
@@ -103,6 +123,6 @@ A memory that names a specific function, file, or flag is a claim about what exi
 
 A well-maintained memory system changes the assistant relationship from transactional to cumulative. Session 50 is qualitatively different from session 1: the assistant knows your preferences, understands your constraints, remembers past decisions and why they were made, and can build on prior work instead of rediscovering it.
 
-The architecture here, typed files with an indexed manifest, handles the growth curve. Early on, everything fits in the index. As memory grows past 100 entries, the type system and grooming rules keep it manageable. The topic files accumulate without inflating session cost, available when relevant, invisible when not.
+The architecture here, typed files with an indexed manifest, handles the growth curve. Early on, everything fits in the index. As memory grows, the type system, grooming rules, and hygiene framework keep it manageable. A production system running this architecture reduced from 87 feedback memories to 40 by applying the graduation framework described above. The reduction actually improved assistant quality: fewer memories meant less noise in every session, faster index scanning, and cleaner signal when a memory did fire. Pruning was additive.
 
-The key discipline: save what's non-obvious and hard to re-derive. Skip everything else. A memory system that captures everything is worse than one that captures nothing, because it buries signal in noise and makes every session slower.
+The key discipline: save what's non-obvious and hard to re-derive. Promote universal lessons to the instruction file. Retire what's stale. A memory system that only accumulates is worse than one that actively curates, because it buries signal in noise and makes every session slower.
