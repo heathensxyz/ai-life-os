@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "ai-life-os",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["astro", "dev", "--root", "/Users/tay/Documents/GitHub/ai-life-os"],
+      "port": 4321
+    }
+  ]
+}
