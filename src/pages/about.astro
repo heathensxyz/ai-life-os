@@ -1,49 +1,90 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
 ---
 
-<Layout
-	title="About This Site"
-	description="An autonomously maintained knowledge base about building AI-powered personal operating systems"
-	pubDate={new Date('June 27 2026')}
->
-	<p>
-		This site is a living knowledge base about building AI-powered personal operating systems.
-		Every post documents a real pattern, tool, or workflow pulled from a production system
-		that manages projects, automates routine work, and continuously improves itself.
-	</p>
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title="About - AI Life OS"
+			description="How AI Life OS works: an autonomous content pipeline that reads a production system, generates posts, reviews for privacy, and publishes."
+		/>
+	</head>
+	<body>
+		<Header />
+		<div class="page-wrap">
+			<div class="prose">
+				<h1>About this project</h1>
+				<p>
+					AI Life OS is a knowledge base documenting patterns for building AI-powered personal
+					operating systems. Every post describes a real pattern, tool, or workflow pulled from
+					a production system that manages projects, automates routine work, and continuously
+					improves itself.
+				</p>
 
-	<p>
-		The content covers memory architectures, hook systems, skill design, autonomous scheduling,
-		self-healing infrastructure, and the practical decisions that turn an AI assistant into
-		a genuine operating layer for daily work.
-	</p>
+				<h2>The system it documents</h2>
+				<p>
+					The source system is a personal operating system built on Obsidian, Claude Code, and a
+					network of integrations. It uses file-based memory that persists across conversations,
+					hook systems that enforce safety rules at the tool level, scheduled automations for
+					recurring work, and a self-healing monitoring layer that watches infrastructure and
+					escalates problems it cannot solve.
+				</p>
+				<p>
+					The system is designed for someone managing multiple concurrent responsibilities
+					with limited time and energy. Every design decision optimizes for low friction,
+					high reliability, and knowledge that compounds rather than resets.
+				</p>
 
-	<h2>How this site works</h2>
+				<h2>Context that compounds</h2>
+				<p>
+					Most AI assistants forget everything between sessions. You re-explain context that
+					was established hours ago. A memory architecture fixes this: typed memories stored
+					as individual files, indexed by a lightweight manifest that loads at session start.
+					Session 50 is qualitatively different from session 1 because the assistant knows your
+					preferences, remembers past decisions, and builds on prior work.
+				</p>
+				<p>
+					This compounding effect is the core design principle. Feedback memories prevent
+					repeated mistakes. Project memories preserve context across sessions. Reference
+					memories eliminate redundant questions. The knowledge base grows but stays manageable
+					through type systems and grooming rules.
+				</p>
 
-	<p>
-		This site is itself an experiment in autonomous content management. An AI agent reads
-		the system it documents, generates posts about patterns and concepts, runs a privacy
-		review to strip personal details, and stages drafts for publishing. The system teaches
-		what it knows while protecting the privacy of the person who built it.
-	</p>
+				<h2>How the content pipeline works</h2>
+				<p>
+					This site is itself an experiment in autonomous content management. The pipeline:
+				</p>
+				<ol>
+					<li>An AI agent reads the source system: CLAUDE.md files, memory architecture, hook definitions, skill libraries, automation configs</li>
+					<li>The agent identifies patterns worth documenting and drafts posts that explain the architecture and reasoning</li>
+					<li>A privacy review strips personal details, names, financial data, and anything that should not be public</li>
+					<li>Approved posts are committed and deployed via GitHub Actions to GitHub Pages</li>
+				</ol>
+				<p>
+					Every post is reviewed before publishing. The agent proposes, a human approves.
+					Over time, as the privacy layer proves reliable, the loop tightens toward full autonomy.
+				</p>
 
-	<p>
-		Every post is reviewed before publishing. The agent proposes, a human approves.
-		Over time, as the privacy layer proves reliable, the loop tightens toward full autonomy.
-	</p>
+				<h2>What you will find here</h2>
+				<ul>
+					<li><strong>System architecture:</strong> how memory, hooks, skills, and schedulers wire together</li>
+					<li><strong>Practical patterns:</strong> solutions to real problems in AI-assisted workflows</li>
+					<li><strong>Automation recipes:</strong> scheduled tasks, self-healing loops, health monitoring</li>
+					<li><strong>Design principles:</strong> building for executive function, low friction, and continuous improvement</li>
+					<li><strong>Honest assessments:</strong> what works, what breaks, and what the tradeoffs are</li>
+				</ul>
 
-	<h2>What you will find here</h2>
-
-	<ul>
-		<li>System architecture: how memory, hooks, skills, and schedulers wire together</li>
-		<li>Practical patterns: solutions to real problems in AI-assisted workflows</li>
-		<li>Automation recipes: scheduled tasks, self-healing loops, health monitoring</li>
-		<li>Design principles: building for executive function, low friction, and continuous improvement</li>
-		<li>Honest assessments: what works, what breaks, and what the tradeoffs are</li>
-	</ul>
-
-	<p>
-		The source code is on <a href="https://github.com/heathensxyz/ai-life-os">GitHub</a>.
-	</p>
-</Layout>
+				<h2>Built in the open</h2>
+				<p>
+					The source code, content pipeline, and deployment infrastructure are all on
+					<a href="https://github.com/heathensxyz/ai-life-os" target="_blank">GitHub</a>.
+					Fork it, adapt it, or just read the patterns.
+				</p>
+			</div>
+		</div>
+		<Footer />
+	</body>
+</html>

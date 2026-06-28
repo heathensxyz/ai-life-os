@@ -1,5 +1,2 @@
-// Place any global data in this file.
-// You can import this data from anywhere in your site by using the `import` keyword.
-
 export const SITE_TITLE = 'AI Life OS';
-export const SITE_DESCRIPTION = 'Building a self-improving personal operating system with AI agents, hooks, memory, and autonomous workflows.';
+export const SITE_DESCRIPTION = 'Patterns and architecture for building AI-powered personal operating systems. Memory systems, automation hooks, self-healing infrastructure, and autonomous workflows that compound over time.';

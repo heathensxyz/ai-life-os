@@ -1,8 +1,14 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+).slice(0, 3);
 ---
 
 <!doctype html>
@@ -12,21 +18,348 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 	</head>
 	<body>
 		<Header />
-		<main>
+
+		<!-- Hero -->
+		<section class="hero">
+			<div class="hero-badge">Open Source Knowledge Base</div>
 			<h1>AI Life OS</h1>
-			<p>
-				A knowledge base documenting patterns for building AI-powered personal operating systems.
-				Memory architecture, automation hooks, self-healing loops, and the systems that tie them together.
+			<p class="hero-sub">
+				Patterns and architecture for building AI-powered personal operating systems.
+				Memory, automation, self-healing infrastructure, and workflows that compound over time.
 			</p>
-			<p>
-				This site is maintained by an autonomous content pipeline: AI reads the source system,
-				generates posts about patterns and concepts, runs a privacy review, and publishes.
-				The system documents itself.
-			</p>
-			<p>
-				<a href={`${import.meta.env.BASE_URL}/blog`}>Read the blog</a> or learn more <a href={`${import.meta.env.BASE_URL}/about`}>about the project</a>.
-			</p>
-		</main>
+			<div class="hero-cta">
+				<a href={`${import.meta.env.BASE_URL}/blog`} class="btn btn-white">Read the blog</a>
+				<a href={`${import.meta.env.BASE_URL}/about`} class="btn btn-hero-outline">How it works</a>
+			</div>
+		</section>
+
+		<!-- Features -->
+		<div class="page-wrap">
+			<section class="features">
+				<h2 class="section-title">What this covers</h2>
+				<p class="section-sub">Real patterns pulled from a production system that manages projects, automates routine work, and continuously improves itself.</p>
+
+				<div class="card-grid">
+					<div class="card feature-card">
+						<div class="feature-icon">&#x1f9e0;</div>
+						<h3>Memory Architecture</h3>
+						<p>Typed, file-based memory that survives across conversations. Indexed manifests, cross-references, and grooming rules that keep signal high as knowledge grows.</p>
+						<span class="tag tag-primary">Foundation</span>
+					</div>
+					<div class="card feature-card">
+						<div class="feature-icon">&#x1f527;</div>
+						<h3>Hook Systems</h3>
+						<p>Pre and post-tool hooks that enforce safety rules, catch regressions, and gate file writes. Code enforces correctness so behavioral discipline is never needed.</p>
+						<span class="tag tag-ocean">Safety</span>
+					</div>
+					<div class="card feature-card">
+						<div class="feature-icon">&#x1f504;</div>
+						<h3>Self-Healing Loops</h3>
+						<p>Always-on monitoring that detects failures, restarts services, and escalates problems it cannot solve. Tiered remediation from auto-fix to human review.</p>
+						<span class="tag tag-sand">Automation</span>
+					</div>
+					<div class="card feature-card">
+						<div class="feature-icon">&#x1f4c8;</div>
+						<h3>Knowledge Compounding</h3>
+						<p>Every session makes the next one better. Feedback memories prevent repeated mistakes. Project memories preserve context. The system teaches itself.</p>
+						<span class="tag tag-primary">Growth</span>
+					</div>
+					<div class="card feature-card">
+						<div class="feature-icon">&#x2699;&#xFE0F;</div>
+						<h3>Skill Design</h3>
+						<p>Reusable, composable skills that chain together. Triggered by context, not memorized commands. Session-start surfaces capabilities when they are relevant.</p>
+						<span class="tag tag-sun">Workflow</span>
+					</div>
+					<div class="card feature-card">
+						<div class="feature-icon">&#x1f6e1;&#xFE0F;</div>
+						<h3>Privacy by Design</h3>
+						<p>Content generation pipelines with built-in privacy review. Personal details are stripped before publishing. The system documents itself while protecting its builder.</p>
+						<span class="tag tag-ocean">Trust</span>
+					</div>
+				</div>
+			</section>
+
+			<!-- How it works -->
+			<hr />
+			<section class="how-it-works">
+				<h2 class="section-title">How the content pipeline works</h2>
+				<p class="section-sub">This site is itself an experiment in autonomous content management.</p>
+
+				<div class="stepper">
+					<div class="step">
+						<div class="step-num">1</div>
+						<div class="step-content">
+							<h3>Read</h3>
+							<p>An AI agent reads the source system it documents: CLAUDE.md files, memory architecture, hook definitions, skill libraries, and automation configs.</p>
+						</div>
+					</div>
+					<div class="step">
+						<div class="step-num">2</div>
+						<div class="step-content">
+							<h3>Generate</h3>
+							<p>The agent identifies patterns worth documenting, drafts posts that explain the architecture and the reasoning behind design decisions.</p>
+						</div>
+					</div>
+					<div class="step">
+						<div class="step-num">3</div>
+						<div class="step-content">
+							<h3>Review</h3>
+							<p>A privacy review strips personal details, names, financial data, and anything that should not be public. Every post is reviewed before publishing.</p>
+						</div>
+					</div>
+					<div class="step">
+						<div class="step-num">4</div>
+						<div class="step-content">
+							<h3>Publish</h3>
+							<p>Approved posts are committed and deployed. Over time, as the privacy layer proves reliable, the loop tightens toward full autonomy.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Latest posts -->
+			{posts.length > 0 && (
+				<>
+					<hr />
+					<section class="latest-posts">
+						<div class="latest-header">
+							<h2 class="section-title">Latest posts</h2>
+							<a href={`${import.meta.env.BASE_URL}/blog`} class="btn btn-outline">View all</a>
+						</div>
+
+						<div class="post-list">
+							{posts.map((post) => (
+								<a href={`${import.meta.env.BASE_URL}/blog/${post.id}/`} class="post-card card">
+									<div class="post-date">
+										<FormattedDate date={post.data.pubDate} />
+									</div>
+									<h3>{post.data.title}</h3>
+									<p>{post.data.description}</p>
+								</a>
+							))}
+						</div>
+					</section>
+				</>
+			)}
+
+			<!-- CTA -->
+			<hr />
+			<section class="cta-section">
+				<div class="cta-card">
+					<h2>Built in the open</h2>
+					<p>
+						The source code, content pipeline, and deployment infrastructure are all on GitHub.
+						Fork it, adapt it, or just read the patterns.
+					</p>
+					<div class="cta-buttons">
+						<a href="https://github.com/heathensxyz/ai-life-os" target="_blank" class="btn btn-primary">View on GitHub</a>
+						<a href={`${import.meta.env.BASE_URL}/blog`} class="btn btn-outline">Read the blog</a>
+					</div>
+				</div>
+			</section>
+		</div>
+
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.hero {
+		background: linear-gradient(140deg, #6FC7B0 0%, #3A9E87 55%, #1E6E5A 100%);
+		color: white;
+		padding: 72px 24px 64px;
+		text-align: center;
+		position: relative;
+		overflow: hidden;
+	}
+	.hero::before {
+		content: '';
+		position: absolute;
+		top: -80px; left: 50%; transform: translateX(-50%);
+		width: 600px; height: 600px;
+		background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 65%);
+		pointer-events: none;
+	}
+	.hero::after {
+		content: '';
+		position: absolute;
+		bottom: -40px; right: -60px;
+		width: 320px; height: 320px;
+		background: radial-gradient(circle, rgba(240,201,106,0.35) 0%, transparent 70%);
+		pointer-events: none;
+	}
+	.hero-badge {
+		display: inline-block;
+		background: rgba(255,255,255,0.15);
+		border: 1px solid rgba(255,255,255,0.30);
+		color: rgba(255,255,255,0.95);
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		padding: 4px 14px;
+		border-radius: 20px;
+		margin-bottom: 18px;
+	}
+	.hero h1 {
+		font-size: 3rem;
+		margin-bottom: 16px;
+		position: relative;
+	}
+	.hero-sub {
+		font-size: 1.05rem;
+		opacity: 0.9;
+		max-width: 580px;
+		margin: 0 auto 32px;
+		line-height: 1.7;
+	}
+	.hero-cta {
+		display: flex;
+		gap: 12px;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.section-title {
+		font-size: 1.55rem;
+		font-weight: 800;
+		color: var(--text);
+		margin-bottom: 6px;
+		letter-spacing: -0.4px;
+	}
+	.section-sub {
+		color: var(--text-muted);
+		font-size: 0.92rem;
+		margin-bottom: 24px;
+	}
+
+	.features { margin-bottom: 0; }
+	.feature-card {
+		display: flex;
+		flex-direction: column;
+	}
+	.feature-icon {
+		font-size: 1.6rem;
+		margin-bottom: 10px;
+	}
+	.feature-card h3 {
+		font-size: 0.95rem;
+		font-weight: 700;
+		margin-bottom: 6px;
+	}
+	.feature-card p {
+		font-size: 0.88rem;
+		color: var(--text-muted);
+		line-height: 1.55;
+		flex: 1;
+		margin-bottom: 12px;
+	}
+
+	.stepper {
+		display: flex;
+		flex-direction: column;
+		gap: 0;
+	}
+	.step {
+		display: flex;
+		gap: 16px;
+		padding: 20px 0;
+		border-bottom: 1px solid var(--border);
+	}
+	.step:last-child { border-bottom: none; }
+	.step-num {
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		background: var(--primary);
+		color: white;
+		font-size: 0.88rem;
+		font-weight: 800;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		margin-top: 2px;
+	}
+	.step-content h3 {
+		font-size: 1.02rem;
+		font-weight: 700;
+		color: var(--text);
+		margin-bottom: 4px;
+	}
+	.step-content p {
+		font-size: 0.88rem;
+		color: var(--text-muted);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	.latest-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 20px;
+	}
+	.latest-header .section-title { margin-bottom: 0; }
+	.post-list {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+	.post-card {
+		text-decoration: none;
+		transition: box-shadow 0.15s, transform 0.15s;
+	}
+	.post-card:hover {
+		box-shadow: var(--shadow-md);
+		transform: translateY(-1px);
+	}
+	.post-date {
+		font-size: 0.78rem;
+		color: var(--text-muted);
+		margin-bottom: 4px;
+	}
+	.post-card h3 {
+		font-size: 1.05rem;
+		color: var(--text);
+		margin-bottom: 6px;
+	}
+	.post-card p {
+		font-size: 0.88rem;
+		color: var(--text-muted);
+		line-height: 1.55;
+		margin: 0;
+	}
+
+	.cta-card {
+		background: linear-gradient(135deg, var(--primary-light) 0%, #E8F4F9 100%);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-xl);
+		padding: 40px 32px;
+		text-align: center;
+	}
+	.cta-card h2 {
+		margin-bottom: 12px;
+	}
+	.cta-card p {
+		max-width: 520px;
+		margin: 0 auto 24px;
+		color: var(--text-body);
+		font-size: 0.95rem;
+		line-height: 1.7;
+	}
+	.cta-buttons {
+		display: flex;
+		gap: 12px;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	@media (max-width: 600px) {
+		.hero { padding: 48px 20px 40px; }
+		.hero h1 { font-size: 2rem; }
+		.hero-sub { font-size: 0.95rem; }
+		.latest-header { flex-direction: column; gap: 12px; align-items: flex-start; }
+		.cta-card { padding: 28px 20px; }
+	}
+</style>
