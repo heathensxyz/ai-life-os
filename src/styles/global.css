@@ -16,7 +16,7 @@
   --white:         #FFFFFF;
   --text:          #1E3830;
   --text-body:     #3C5249;
-  --text-muted:    #7A9281;
+  --text-muted:    #5F7A68;
   --border:        #C8E8E0;
   --border-md:     #A8D4C8;
 
@@ -95,7 +95,7 @@ blockquote {
 hr {
   border: none;
   border-top: 1px solid var(--border);
-  margin: 48px 0;
+  margin: 32px 0;
 }
 
 table {
@@ -126,7 +126,7 @@ li { margin-bottom: 0.3em; }
 .page-wrap {
   max-width: 900px;
   margin: 0 auto;
-  padding: 40px 24px 80px;
+  padding: 32px 24px 64px;
 }
 
 .card {
@@ -248,5 +248,5 @@ li { margin-bottom: 0.3em; }
 @media (max-width: 600px) {
   h1 { font-size: 1.8rem; }
   .card-grid { grid-template-columns: 1fr; }
-  .page-wrap { padding: 24px 16px 60px; }
+  .page-wrap { padding: 20px 16px 48px; }
 }

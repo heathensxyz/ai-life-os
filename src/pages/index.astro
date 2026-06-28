@@ -24,12 +24,11 @@ const posts = (await getCollection('blog')).sort(
 			<div class="hero-badge">Open Source Knowledge Base</div>
 			<h1>AI Life OS</h1>
 			<p class="hero-sub">
-				Patterns and architecture for building AI-powered personal operating systems.
-				Memory, automation, self-healing infrastructure, and workflows that compound over time.
+				Reusable patterns for building AI assistants that remember, self-heal, and get better every session. Pulled from a production system, documented so you can steal them.
 			</p>
 			<div class="hero-cta">
-				<a href={`${import.meta.env.BASE_URL}/blog`} class="btn btn-white">Read the blog</a>
-				<a href={`${import.meta.env.BASE_URL}/about`} class="btn btn-hero-outline">How it works</a>
+				<a href={`${import.meta.env.BASE_URL}/blog`} class="btn btn-white">Get the patterns</a>
+				<a href={`${import.meta.env.BASE_URL}/about`} class="btn btn-hero-outline">See the architecture</a>
 			</div>
 		</section>
 
@@ -37,43 +36,43 @@ const posts = (await getCollection('blog')).sort(
 		<div class="page-wrap">
 			<section class="features">
 				<h2 class="section-title">What this covers</h2>
-				<p class="section-sub">Real patterns pulled from a production system that manages projects, automates routine work, and continuously improves itself.</p>
+				<p class="section-sub">Architecture decisions from a system that manages 100+ active projects, runs 30+ scheduled automations, and maintains a 2,000-note knowledge base.</p>
 
 				<div class="card-grid">
 					<div class="card feature-card">
 						<div class="feature-icon">&#x1f9e0;</div>
 						<h3>Memory Architecture</h3>
-						<p>Typed, file-based memory that survives across conversations. Indexed manifests, cross-references, and grooming rules that keep signal high as knowledge grows.</p>
+						<p>Typed, file-based memory that survives across conversations. Indexed manifests and grooming rules keep signal high as the knowledge base grows past 100 entries.</p>
 						<span class="tag tag-primary">Foundation</span>
 					</div>
 					<div class="card feature-card">
 						<div class="feature-icon">&#x1f527;</div>
 						<h3>Hook Systems</h3>
-						<p>Pre and post-tool hooks that enforce safety rules, catch regressions, and gate file writes. Code enforces correctness so behavioral discipline is never needed.</p>
+						<p>Pre and post-tool hooks that gate file writes, block unsafe patterns, and catch regressions before they land. Code enforces correctness, not behavioral discipline.</p>
 						<span class="tag tag-ocean">Safety</span>
 					</div>
 					<div class="card feature-card">
 						<div class="feature-icon">&#x1f504;</div>
 						<h3>Self-Healing Loops</h3>
-						<p>Always-on monitoring that detects failures, restarts services, and escalates problems it cannot solve. Tiered remediation from auto-fix to human review.</p>
+						<p>Monitoring that detects failures, restarts services, and escalates what it cannot solve. Three tiers: auto-fix, alert, and human review.</p>
 						<span class="tag tag-sand">Automation</span>
 					</div>
 					<div class="card feature-card">
 						<div class="feature-icon">&#x1f4c8;</div>
 						<h3>Knowledge Compounding</h3>
-						<p>Every session makes the next one better. Feedback memories prevent repeated mistakes. Project memories preserve context. The system teaches itself.</p>
+						<p>Session 50 is different from session 1. Feedback memories prevent repeated mistakes, project memories preserve context, and the system gets sharper over time.</p>
 						<span class="tag tag-primary">Growth</span>
 					</div>
 					<div class="card feature-card">
 						<div class="feature-icon">&#x2699;&#xFE0F;</div>
 						<h3>Skill Design</h3>
-						<p>Reusable, composable skills that chain together. Triggered by context, not memorized commands. Session-start surfaces capabilities when they are relevant.</p>
+						<p>Composable skills triggered by context, not memorized commands. Skills chain into each other so the system surfaces capabilities when they are relevant.</p>
 						<span class="tag tag-sun">Workflow</span>
 					</div>
 					<div class="card feature-card">
 						<div class="feature-icon">&#x1f6e1;&#xFE0F;</div>
 						<h3>Privacy by Design</h3>
-						<p>Content generation pipelines with built-in privacy review. Personal details are stripped before publishing. The system documents itself while protecting its builder.</p>
+						<p>Content pipelines with built-in privacy review. Personal details are stripped before anything publishes. The system documents itself while protecting its builder.</p>
 						<span class="tag tag-ocean">Trust</span>
 					</div>
 				</div>
@@ -83,7 +82,7 @@ const posts = (await getCollection('blog')).sort(
 			<hr />
 			<section class="how-it-works">
 				<h2 class="section-title">How the content pipeline works</h2>
-				<p class="section-sub">This site is itself an experiment in autonomous content management.</p>
+				<p class="section-sub">This site generates its own content. An AI agent reads the system it documents, drafts posts, and publishes after privacy review.</p>
 
 				<div class="stepper">
 					<div class="step">
@@ -167,7 +166,7 @@ const posts = (await getCollection('blog')).sort(
 	.hero {
 		background: linear-gradient(140deg, #6FC7B0 0%, #3A9E87 55%, #1E6E5A 100%);
 		color: white;
-		padding: 72px 24px 64px;
+		padding: 56px 24px 48px;
 		text-align: center;
 		position: relative;
 		overflow: hidden;

@@ -43,3 +43,11 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "WebSite",
+	"name": SITE_TITLE,
+	"url": Astro.site,
+	"description": description,
+})} />

@@ -1,0 +1,42 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title="Page not found - AI Life OS"
+			description="The page you're looking for doesn't exist."
+		/>
+	</head>
+	<body>
+		<Header />
+		<div class="page-wrap not-found">
+			<h1>404</h1>
+			<p>This page doesn't exist. It may have moved, or you followed a broken link.</p>
+			<a href={import.meta.env.BASE_URL} class="btn btn-primary">Back to home</a>
+		</div>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.not-found {
+		text-align: center;
+		padding-top: 80px;
+		padding-bottom: 80px;
+	}
+	.not-found h1 {
+		font-size: 4rem;
+		color: var(--primary);
+		margin-bottom: 12px;
+	}
+	.not-found p {
+		color: var(--text-muted);
+		font-size: 1.05rem;
+		margin-bottom: 24px;
+	}
+</style>

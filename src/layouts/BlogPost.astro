@@ -14,6 +14,17 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 <html lang="en">
 	<head>
 		<BaseHead title={`${title} - AI Life OS`} description={description} />
+		<meta property="article:published_time" content={pubDate.toISOString()} />
+		{updatedDate && <meta property="article:modified_time" content={updatedDate.toISOString()} />}
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "BlogPosting",
+			"headline": title,
+			"description": description,
+			"datePublished": pubDate.toISOString(),
+			...(updatedDate && { "dateModified": updatedDate.toISOString() }),
+			"publisher": { "@type": "Organization", "name": "AI Life OS" },
+		})} />
 	</head>
 	<body>
 		<Header />
