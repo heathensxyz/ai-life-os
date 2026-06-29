@@ -44,6 +44,8 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
 
+<script defer src="https://cloud.umami.is/script.js" data-website-id="3cd21c45-588b-4629-946e-ba0d035f0626"></script>
+
 <script type="application/ld+json" set:html={JSON.stringify({
 	"@context": "https://schema.org",
 	"@type": "WebSite",
